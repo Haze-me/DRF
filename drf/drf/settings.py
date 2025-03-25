@@ -44,6 +44,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 ]
 
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_SECURE = False  # Set True in production with HTTPS
+
+
 # Allow frontend to connect to API
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",  # Adjust if frontend is separate
@@ -58,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'drf.urls'
@@ -154,6 +160,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+#CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000"]  # Allow local development
+
 
 
 LOGIN_URL = '/login/'  # Redirect unauthenticated users here

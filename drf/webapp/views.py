@@ -5,18 +5,32 @@ from django.contrib import messages
 from users.models import User
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from django.contrib.auth import logout
+# -----------------------
+# HTML Views (Frontend)
+# -----------------------
 
-
-# Create your views here.
-def home(request):
+def home_view(request):
     return render(request, "webapp/home.html")
+
+def login_view(request):
+    """Renders the login page."""
+    return render(request, "webapp/login.html")
+
+def register_view(request):
+    """Renders the registration page."""
+    return render(request, "webapp/register.html")
+
+
+def user_logout(request):
+    logout(request)
+    return redirect("home")  # Redirect to home after logout
+
 
 
 @login_required
 def dashboard(request):
     return render(request, "webapp/dashboard.html")
-
-
 
 @login_required
 def profile(request):
